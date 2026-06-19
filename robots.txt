@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://iforpwbercoo.github.io/appzh-hth-com-cn/sitemap.xml
