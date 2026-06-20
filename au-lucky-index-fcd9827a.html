@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>澳洲幸运10 · 信息卡片页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background-color: #f8f6f0;
+            color: #2d2a24;
+            line-height: 1.7;
+            padding: 2rem 1.5rem;
+        }
+
+        .container {
+            max-width: 780px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 28px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.02);
+            padding: 2.5rem 2rem 3rem;
+        }
+
+        /* 主视觉 —— 柔光卡片 */
+        .hero-card {
+            background: #f3efe8;
+            border-radius: 20px;
+            padding: 2rem 1.8rem;
+            margin-bottom: 2.4rem;
+            border-left: 6px solid #b8a58a;
+        }
+
+        .hero-card h1 {
+            font-size: 2.2rem;
+            font-weight: 480;
+            letter-spacing: -0.01em;
+            color: #2b241c;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-card .sub {
+            font-size: 1.05rem;
+            color: #5f564c;
+            border-bottom: 1px dashed #d6cdbe;
+            padding-bottom: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-card p {
+            font-size: 1rem;
+            color: #4a4239;
+        }
+
+        .hero-card .tagline {
+            margin-top: 1rem;
+            font-style: italic;
+            color: #7a6e5e;
+            font-size: 0.95rem;
+            border-left: 3px solid #cbbaa5;
+            padding-left: 1rem;
+        }
+
+        /* 信息卡片网格 */
+        .card-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .card {
+            background-color: #fbfaf7;
+            border-radius: 18px;
+            padding: 1.5rem 1.6rem;
+            box-shadow: 0 1px 6px rgba(0,0,0,0.02);
+            border: 1px solid #ede8df;
+            transition: box-shadow 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+        }
+
+        .card h2 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #2d241b;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card h2::before {
+            content: "◆";
+            font-size: 0.9rem;
+            color: #b59e81;
+        }
+
+        .card p {
+            font-size: 0.98rem;
+            color: #4c443b;
+        }
+
+        .card ul {
+            list-style: none;
+            margin-top: 0.5rem;
+        }
+
+        .card ul li {
+            font-size: 0.96rem;
+            padding: 0.2rem 0;
+            padding-left: 1.2rem;
+            position: relative;
+            color: #4a4239;
+        }
+
+        .card ul li::before {
+            content: "·";
+            position: absolute;
+            left: 0.2rem;
+            color: #b09878;
+            font-weight: bold;
+        }
+
+        /* 自然链接段落（无“进入/点击”等词） */
+        .natural-link-section {
+            background: #f5f1ea;
+            border-radius: 18px;
+            padding: 1.6rem 1.8rem;
+            margin: 2rem 0 1.2rem;
+        }
+
+        .natural-link-section p {
+            font-size: 1rem;
+            color: #3d362e;
+            margin-bottom: 0.8rem;
+        }
+
+        .natural-link-section p:last-child {
+            margin-bottom: 0;
+        }
+
+        .natural-link-section a {
+            color: #5f4d36;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1.5px solid #dacbbc;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .natural-link-section a:hover {
+            border-bottom-color: #7f6a50;
+            color: #2f241a;
+        }
+
+        /* 引用块 / 提示框 */
+        .callout {
+            background-color: #eeeadf;
+            border-radius: 16px;
+            padding: 1.2rem 1.6rem;
+            margin: 1.8rem 0;
+            border-left: 5px solid #bfaa8e;
+            font-size: 0.95rem;
+            color: #3b342b;
+        }
+
+        .callout strong {
+            color: #2d241b;
+            font-weight: 550;
+        }
+
+        .faq-mini {
+            margin: 1.8rem 0 0.5rem;
+        }
+
+        .faq-mini details {
+            background: #faf8f3;
+            border-radius: 14px;
+            padding: 0.8rem 1.2rem;
+            margin-bottom: 0.8rem;
+            border: 1px solid #e6dfd4;
+        }
+
+        .faq-mini details summary {
+            font-weight: 500;
+            color: #3d352b;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .faq-mini details summary::before {
+            content: "↪";
+            color: #ad9479;
+            font-size: 0.9rem;
+        }
+
+        .faq-mini details p {
+            margin-top: 0.6rem;
+            font-size: 0.94rem;
+            color: #4f473d;
+            padding-left: 1.4rem;
+            border-left: 2px solid #dfd3c2;
+        }
+
+        .footer-note {
+            margin-top: 2.2rem;
+            font-size: 0.85rem;
+            color: #8b7f6e;
+            text-align: center;
+            border-top: 1px solid #e6ddd0;
+            padding-top: 1.8rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 540px) {
+            body {
+                padding: 1rem 0.8rem;
+            }
+            .container {
+                padding: 1.8rem 1.2rem;
+                border-radius: 20px;
+            }
+            .hero-card h1 {
+                font-size: 1.7rem;
+            }
+            .hero-card {
+                padding: 1.4rem 1.2rem;
+            }
+            .card {
+                padding: 1.2rem 1.2rem;
+            }
+            .natural-link-section {
+                padding: 1.2rem 1.2rem;
+            }
+            .callout {
+                padding: 1rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- 主视觉 -->
+    <div class="hero-card">
+        <h1>澳洲幸运10</h1>
+        <div class="sub">再次来访 · 收藏 · 持续关注</div>
+        <p>每次打开这个页面，都像推开一扇熟悉的门——光线柔和，内容安稳。不必刻意记起，只需知道它一直在。</p>
+        <div class="tagline">不是为了追逐什么，而是保留一个习惯的角落。</div>
+    </div>
+
+    <!-- 用途卡片 -->
+    <div class="card-grid">
+        <div class="card">
+            <h2>日常随手用</h2>
+            <p>了解基本玩法、查看历史走势、参考常见思路——这些都不需要特意安排时间。打开页面，信息就在那里，像一本翻到常用页的手册。</p>
+            <ul>
+                <li>快速回顾规则与术语</li>
+                <li>观察冷热号分布（非预测）</li>
+                <li>记录自己的观察笔记</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>适合哪些人</h2>
+            <p>喜欢研究数字规律的朋友、偶尔放松时看看走势的休闲型参与者，或者只是对幸运数字文化感兴趣。不需要专业背景，保持轻松心态即可。</p>
+            <ul>
+                <li>数字爱好者 & 逻辑控</li>
+                <li>休闲型参与，不沉迷</li>
+                <li>想了解但不知从何入手的新人</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 自然链接段落（不使用“进入、点击、访问”等词） -->
+    <div class="natural-link-section">
+        <p>如果你已经有过几次浏览经验，大概能感受到这个站点的节奏——数据更新稳定，界面也没有太多装饰。想再回来看看的时候，把 <a href="https://au-lucky-10.com">澳洲幸运10</a> 添加到书签栏，或者直接在浏览器历史里找，都很方便。</p>
+        <p>有些页面适合频繁刷新，有些则适合隔段时间回来扫一眼。它是后者。不必每天惦记，但需要的时候，它始终是同一个地址。</p>
+    </div>
+
+    <!-- 提示框 / 引用块 -->
+    <div class="callout">
+        <strong>💡 一点建议</strong><br>
+        信息页面不是为了改变什么，而是提供一个安静的参照。收藏这个页面，就是保留一个随时可以回来看看的位置。不用刻意，顺其自然就好。
+    </div>
+
+    <!-- FAQ 摘要（简洁） -->
+    <div class="faq-mini">
+        <details>
+            <summary>为什么我上次看到的数据和现在不同？</summary>
+            <p>数据随期次实时更新，每次打开看到的都是最新结果。历史走势部分会保留过往记录，方便对比。如果想固定某个时间点的数据，可以手动截图或记下期号。</p>
+        </details>
+        <details>
+            <summary>页面内容会经常变吗？</summary>
+            <p>结构基本稳定，但数据部分会保持同步。偶尔会补充一些说明或调整排版，整体风格不会有太大变化。这也是为什么适合收藏——熟悉的位置，熟悉的感觉。</p>
+        </details>
+        <details>
+            <summary>需要注册或登录吗？</summary>
+            <p>不需要。这个页面是公开的信息展示，直接打开即可浏览。没有账户系统，也没有个人信息收集。放心使用。</p>
+        </details>
+    </div>
+
+    <!-- 结尾 -->
+    <div class="footer-note">
+        保持轻松，保持关注。<br>
+        澳洲幸运10 · 信息卡片页
+    </div>
+</div>
+</body>
+</html>
